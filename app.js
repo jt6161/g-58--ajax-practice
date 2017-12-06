@@ -20,8 +20,18 @@ $(document).ready(function() {
       }
     })
   })
-
-
+  let genrebtn = $('#findBooks')
+  genrebtn.click(function() {
+    $.get("https://tmartin-books-api.herokuapp.com/details", function(data) {
+      for (var i = 0; i < data.length; i++) {
+        if ($('#search').val().toLowerCase() === data[i].genre.toLowerCase()) {
+          let p = $('<p></p>')
+          p.text(data[i].genre + " - " + data[i].title)
+          $('.results').append(p)
+        }
+      }
+    })
+  })
 
 
 
